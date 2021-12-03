@@ -14,6 +14,7 @@ PAGES = {"Algoritmo Apriori": apriori, "Metricas de distancia": metricas,
         "Módulo Árboles":arboles}
 
 st.set_page_config(page_title='Proyecto IA', page_icon='🤓', layout='wide',initial_sidebar_state='collapsed')
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('Proyecto Inteligencia Artificial')
 st.sidebar.title('Navegación')
@@ -47,4 +48,5 @@ with col5:
 #    selection = navbarra
 
 page = PAGES[selection]
+#st.balloons()
 page.app()

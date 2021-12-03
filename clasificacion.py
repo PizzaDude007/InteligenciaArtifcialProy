@@ -73,10 +73,9 @@ def app():
                 with col2:
                     st.write('Predicciones')
                     Predicciones = Clasificacion.predict(X_validation)
-                    st.write(Probabilidad)
+                    st.write(Predicciones)
                 #Clasificacion.score(X_validation, Y_validation)
                 
-        
         with st.expander('Realizar Clasificación'):
             predicciones = {}
             with st.form('Clasificación'):

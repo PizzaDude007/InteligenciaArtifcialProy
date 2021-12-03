@@ -9,6 +9,7 @@ def app():
     st.title('Apriori')
 
     archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
+    #colg1, colg2 = st.columns([2, 3])
 
     if archivo is not None:
         """
@@ -46,9 +47,12 @@ def app():
         ax.set_ylabel('Item')
         ax.set_xlabel('Frecuencia')
         ax.barh(ListaM['Item'], width=ListaM['Frecuencia'], color='blue')
+        #ax.set_alpha(0)
         with st.expander("Gráfico"):
             #st.write("Grafico de ejemplo")
-            st.pyplot(fig)
+            a = st.empty()
+            a.info('Cargando Gráfico')
+            a.pyplot(fig, clear_figure=True)
 
         #Se crea una lista de listas a partir del dataframe y se remueven los 'NaN'
         #level=0 especifica desde el primer índice
@@ -65,9 +69,11 @@ def app():
                     confianza = st.number_input("Confianza", min_value=0.0, max_value=1.0, value=0.0000, step=0.01, format='%f')
                 with col3:
                     elevacion = st.number_input("Elevación", min_value=0.0, step=0.01, value=0.0000, format='%f')
-                st.form_submit_button('Enviar')
+                listo =st.form_submit_button('Enviar')
 
-            if (soporte != 0 and confianza != 0 and elevacion != 0):
+            if listo or (soporte != 0 and confianza != 0 and elevacion != 0):
+                e = st.empty()
+                e.info('Cargando Datos')
 
                 Reglas = apriori(TransaccionesLista, min_support=soporte, min_confidence=confianza,
                                 min_lift=elevacion)
@@ -77,7 +83,7 @@ def app():
                 
                 col1, col2 = st.columns(2)
                 for item in Resultados:
-                    with st.container():
+                    with e.container():
                         #El primer índice de la lista
                         Emparejar = item[0]
                         items = [x for x in Emparejar]

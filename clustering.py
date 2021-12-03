@@ -30,21 +30,26 @@ def app():
       
       with st.expander('Matriz de dispersion'):
          #color = None
-
          if st.checkbox('Colorear'):
             color = st.selectbox('Seleccione una variable para colorear grafica', header)
             fig = sns.pairplot(Datos, hue=color)
-            st.pyplot(fig)
+            a = st.empty()
+            a.info('Cargando Gráfica')
+            a.pyplot(fig)
          else:
             fig = sns.pairplot(Datos)
-            st.pyplot(fig)
+            a = st.empty()
+            a.info('Cargando Gráfica')
+            a.pyplot(fig)
             
 
       with st.expander('Mapa de Calor'):
+         a = st.empty()
          fig, ax = plt.subplots(figsize=(14,10))
          MatrizInf = np.triu(corrDatos)
          sns.heatmap(corrDatos, cmap='RdBu_r', annot=True, mask=MatrizInf)
-         st.pyplot(fig)
+         a.info('Cargando Mapa de Calor')
+         a.pyplot(fig)
 
       with st.expander("Clustering Jerarquico"):
          DatosJ=None
@@ -58,6 +63,8 @@ def app():
             listo = col2.form_submit_button('Enviar')
          
          if listo or (len(seleccionJ)!=0 and metrica!=None):
+            a = st.empty()
+            a.info('Cargando Resultado')
             seleccionDatos = np.array(Datos[seleccionJ])
 
             #with st.container():
@@ -68,16 +75,19 @@ def app():
             MJEstandarizada = estandarizarJ.fit_transform(seleccionDatos)        
             
             if mostrar:
+               b = st.empty()
+               b.info('Cargando Árbol')
                fig, ax = plt.subplots(figsize=(14,10))
                ax.set_xlabel(archivo.name[:-4])
                ax.set_ylabel('Distancia')
                shc.dendrogram(shc.linkage(MJEstandarizada, method='complete', metric=metrica))
-               st.pyplot(fig)
+               b.pyplot(fig)
          
             MJerarquico = AgglomerativeClustering(n_clusters=num_clusterJ, linkage='complete', affinity=metrica)
             MJerarquico.fit_predict(MJEstandarizada)
             DatosJ = Datos
             DatosJ['cluster'] = MJerarquico.labels_
+            a.empty()
             st.write('Matriz con Clústeres')
             st.write(DatosJ)
 
@@ -97,6 +107,8 @@ def app():
             listo = col2.form_submit_button('Enviar')
          
          if listo or (len(seleccionP)!=0 and codo1>=0 and codo2>=0):
+            a = st.empty()
+            a.info('Cargando Resultado')
             seleccionDatos = np.array(Datos[seleccionP])
             estandarizarP = StandardScaler()
             MPEstandarizada = estandarizarP.fit_transform(seleccionDatos)
@@ -109,15 +121,21 @@ def app():
                   SSE.append(km.inertia_)
 
                k1 = KneeLocator(range(codo1,codo2), SSE, curve='convex', direction='decreasing')
-               
+               a.empty()
                fig, ax = plt.subplots()
-               #fig = plt.style.use('ggplot')
+               plt.style.use('ggplot')
+               ax.plot(range(2, 12), SSE, marker='o')
+               ax.set_xlabel('Cantidad de clusters *k*')
+               ax.set_ylabel('SSE')
+               ax.axvline(x=k1.elbow, color='black', linestyle='--')
                k1.plot_knee()
-               st.pyplot(fig)
+               st.pyplot(fig=fig, clear_figure=None)
+               #st.write(plot_figure(codo1, codo2, k1, all_knees=SSE))
 
                MParticional = KMeans(n_clusters=k1.elbow, random_state=0).fit(MPEstandarizada)  
                num_clusterP=k1.elbow
             else:
+               a.empty()
                MParticional = KMeans(n_clusters=num_clusterP, random_state=0).fit(MPEstandarizada)
 
             MParticional.predict(MPEstandarizada)

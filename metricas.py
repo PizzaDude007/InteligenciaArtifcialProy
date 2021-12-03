@@ -67,5 +67,5 @@ def app():
                     distancia2 = distance.cityblock(Datos.iloc[objeto1],Datos.iloc[objeto2])
 
             if distancia2 is not None:
-                st.write('El resultado es: ',distancia2)
+                st.info('El resultado es: '+str(distancia2))
 
