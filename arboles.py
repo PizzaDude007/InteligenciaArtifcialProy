@@ -23,12 +23,12 @@ def app(visualizacion):
     variablesPronostico = []
 
     if visualizacion == 'Modo Avanzado':
-        st.image('https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+        st.image('https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
         archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
         if archivo is not None: nombreArchivo = archivo.name 
     else:
-        st.image('https://images.pexels.com/photos/7088521/pexels-photo-7088521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',width=700)
-        st.caption('Se trabaja con un conjunto de datos para pacientes con diagnósticos de tumor de mama')
+        st.image('https://images.pexels.com/photos/7088521/pexels-photo-7088521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',use_column_width=True)
+        st.caption('Se trabaja con un conjunto de datos para pacientes con diagnósticos de tumor de mama.')
         nombreArchivo = 'WDBCOriginal.csv'
         variablesClasificacion = ['Texture', 'Area', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension']
         variablesPronostico = ['Texture', 'Perimeter', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension']

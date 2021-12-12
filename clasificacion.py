@@ -16,12 +16,12 @@ def app(visualizacion):
     variablesPredefinidas = []
 
     if visualizacion == 'Modo Avanzado':
-        st.image('https://images.pexels.com/photos/7512859/pexels-photo-7512859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+        st.image('https://images.pexels.com/photos/7512859/pexels-photo-7512859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
         archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
         if archivo is not None: nombreArchivo = archivo.name 
     else:
-        st.image('https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',width=700)
-        st.caption('Se utiliza como ejemplo el diagnóstico de un tumor de mama, para conocer si es maligno o benigno')
+        st.image('https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',use_column_width=True)
+        st.caption('Se utiliza como ejemplo el diagnóstico de un tumor de mama, para conocer si es maligno o benigno.')
         nombreArchivo = 'WDBCOriginal.csv'
         variablesPredefinidas = ['Texture', 'Area', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension']
 

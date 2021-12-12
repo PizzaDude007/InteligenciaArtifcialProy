@@ -12,13 +12,13 @@ def app(visualizacion):
     #st.write('Visualización = ',visualizacion)
     archivo = None
     if visualizacion == 'Modo Avanzado':
-        st.image('https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+        st.image('https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
         archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
         if archivo is not None: nombreArchivo = archivo.name 
     else:
-        st.image('https://images.pexels.com/photos/2398356/pexels-photo-2398356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',width=700)
-        st.caption('Se tiene un conjunto de datos de datos de un local de renta de películas, con el cual se observa'+
-                    ' la relación entre las distintas películas que rentan o adquieren los mismos clientes')
+        st.image('https://images.pexels.com/photos/2398356/pexels-photo-2398356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',use_column_width=True)
+        st.caption('Se tiene un conjunto de datos de un local de renta de películas, con el cual se observa'+
+                    ' la relación entre las distintas películas que rentan o adquieren los mismos clientes.')
         nombreArchivo = 'movies.csv'
     #colg1, colg2 = st.columns([2, 3])
 

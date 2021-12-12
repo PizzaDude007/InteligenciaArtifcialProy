@@ -19,13 +19,13 @@ def app(visualizacion):
    #cargaDatos = st.empty()
 
    if visualizacion == 'Modo Avanzado':
-      st.image('https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+      st.image('https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
       archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
       if archivo is not None: nombreArchivo = archivo.name 
    else:
-      st.image('https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+      st.image('https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
       st.caption('Se busca obtener clústeres de usuarios, con características similares, '+
-                  'se tiee un conjunto de datos de personas que buscan un crédito hipotecario con tasa fija a 30 años')
+                  'se tiene un conjunto de datos de personas que buscan un crédito hipotecario con tasa fija a 30 años.')
       nombreArchivo = 'Hipoteca.csv'
       variablesPredefinidas = ['ingresos', 'gastos_comunes', 'pago_coche', 'gastos_otros', 'ahorros', 'vivienda', 'estado_civil', 'hijos', 'trabajo']
    

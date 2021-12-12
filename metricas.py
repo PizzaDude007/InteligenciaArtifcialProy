@@ -9,13 +9,13 @@ def app(visualizacion):
     st.subheader("Métricas de Distancia")
 
     if visualizacion == 'Modo Avanzado':
-        st.image('https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+        st.image('https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
         archivo = st.file_uploader("Importar archivo CSV", type=["csv"])
         if archivo is not None: nombreArchivo = archivo.name 
     else:
-        st.image('https://images.pexels.com/photos/162500/measurement-millimeter-centimeter-meter-162500.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', width=700)
+        st.image('https://images.pexels.com/photos/162500/measurement-millimeter-centimeter-meter-162500.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', use_column_width=True)
         st.caption('Se busca comparar mediante distintas métricas la similitud entre dos elementos de un conjunto de datos, '+
-                    'en este caso se tiene personas que buscan realizar una hipoteca a una casa en un plazo de 30 años')
+                    'en este caso se tiene personas que buscan realizar una hipoteca a una casa en un plazo de 30 años.')
         nombreArchivo = 'Hipoteca.csv'
 
     if visualizacion == 'Datos Precargados' or archivo is not None:
